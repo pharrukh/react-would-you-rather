@@ -1,5 +1,7 @@
 # would you rather
 
+[![Build Status](https://dev.azure.com/normuradov0143/normuradov/_apis/build/status/pharrukh.react-would-you-rather?branchName=master)](https://dev.azure.com/normuradov0143/normuradov/_build/latest?definitionId=4&branchName=master)
+
 The project is deployed [here](https://www.normuradov.com/product/would-you-rather/#/).
 
 ## technologies

@@ -1,0 +1,215 @@
+@import url("https://fonts.googleapis.com/css2?family=Alegreya&family=Roboto&display=swap");
+
+.App {
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+input[type="radio"]:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #d1d3d1;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+
+input[type="radio"]:checked:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #fee715ff;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid black;
+}
+
+.question,
+.poll-result {
+  display: flex;
+  flex-direction: column;
+  border: grey 1px solid;
+  margin: 1em;
+  max-width: 30em;
+  border-radius: 2em;
+}
+
+.title {
+  text-align: center;
+  font-family: "Alegreya", serif;
+  font-size: 2.1em;
+  background-color: #fee715ff;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5em;
+}
+
+.content form {
+  text-align: left;
+}
+
+.content label {
+  margin-left: 0.5em;
+}
+
+.content form > div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+input[type="submit"] {
+  color: black;
+  background-color: #d1d3d1;
+  border-radius: 0.8em;
+  border: none;
+  font-size: 1em;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+input[type="submit"]:hover {
+  background-color: #fee715ff;
+}
+
+.content .avatar {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.content img {
+  border-radius: 1em;
+  margin: 1em;
+  max-width: 5em;
+  max-height: 5em;
+  filter: grayscale(100%);
+}
+
+/* TODO: this selector can be improved */
+.content > div:nth-child(3) {
+  width: 100%;
+}
+
+.stats {
+  border: solid black 1px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  max-width: 10em;
+  border-radius: 1em;
+  padding: 0.3em;
+  margin: 1em;
+}
+
+.stats > .details {
+  font-size: 0.8em;
+}
+
+.stats-badge {
+  position: relative;
+  right: -1em;
+  top: -1em;
+  background: #fee715ff;
+  border-radius: 3em;
+  color: black;
+  border: solid 1px gray;
+  width: fit-content;
+  align-self: flex-end;
+  padding: 0.3em;
+  margin-bottom: -1em;
+}
+
+.progressbar {
+  background-color: #d1d3d1;
+  border-radius: 13px;
+  padding: 3px;
+}
+
+.progressbar > div {
+  background-color: #fee715ff;
+  height: 20px;
+  border-radius: 10px;
+  font-size: 0.8em;
+  color: black;
+}
+
+.divider {
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: black;
+}
+
+.answer-option {
+  margin-right: 1em;
+  border-radius: 1em;
+  border: #d1d3d1 solid 0.3px;
+}
+
+/* TODO: this selector can be improved */
+.hint {
+  margin-top: 0.4em;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5em;
+  text-align: left;
+  margin-left: 0.5em;
+}
+
+.submit-section {
+  display: flex;
+  justify-content: flex-end;
+}
+
+input[type="text"] {
+  margin-top: 0.5em;
+  font-size: 1.3em;
+  width: 90%;
+}

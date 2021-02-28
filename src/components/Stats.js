@@ -4,6 +4,7 @@ function Stats({ optionText, numberOfVotes, pollSize, isYourVote }) {
     const yourVoteBadge = isYourVote ? <span className="stats-badge">Your Vote</span> : ''
     const percentage = Math.round(((numberOfVotes / pollSize) * 10 + Number.EPSILON) * 100) / 10
     const label = percentage !== 0 ? `${percentage}%` : ''
+
     return (<div className="stats">
         {yourVoteBadge}
         <div className='details'>Would you rather {optionText}</div>

@@ -190,7 +190,6 @@ input[type="submit"]:hover {
 .divider {
   margin-left: 5px;
   margin-right: 5px;
-  background-color: black;
 }
 
 .answer-option {
@@ -306,4 +305,116 @@ input[type="text"] {
   z-index: 1;
   margin: 0;
   padding: 0;
+}
+
+select[name="users"] {
+  font-size: 1.4em;
+  border: 0.5px solid gray;
+  color: gray;
+}
+
+.logo {
+  -webkit-animation: spin 10s linear infinite;
+  -moz-animation: spin 10s linear infinite;
+  animation: spin 10s linear infinite;
+}
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.login-panel {
+  width: 30%;
+  border: solid 1px gray;
+  margin: 1em;
+  border-radius: 1em;
+  text-align: center;
+}
+
+.login-panel > h3,
+h4 {
+  font-family: "Alegreya", serif;
+}
+
+.login-panel > form {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5em;
+}
+
+.view-poll-button {
+  background-color: white;
+  border: solid 0.5px gray;
+  font-size: 1em;
+  border-radius: 0.5em;
+}
+
+.view-poll-button:hover {
+  background-color: gray;
+}
+
+.preview-section {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+}
+
+.question-list {
+  display: flex;
+  flex-direction: column;
+  border: solid 0.5px grey;
+  margin: 1em;
+  border-radius: 1em;
+  max-width: 50%;
+}
+
+.section-title {
+  font-family: "Alegreya", serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
+  font-size: 1.5em;
+  border-top-right-radius: 0.5em;
+  border-top-left-radius: 0.5em;
+  border-bottom: solid 0.5px grey;
+}
+
+.section-title > div {
+  width: 100%;
+  text-align: center;
+}
+
+.left-title {
+  border-top-left-radius: 0.5em;
+  background-color: #d1d3d1;
+}
+
+.left-title:hover {
+  filter: brightness(80%);
+}
+
+.right-title {
+  border-top-right-radius: 0.5em;
+  background-color: #d1d3d1;
+}
+
+.right-title:hover {
+  filter: brightness(80%);
+}
+
+.active {
+  background-color: #fee715ff;
 }

@@ -12,14 +12,14 @@ function LeaderCard({ author, place }) {
             <div className="avatar">
                 <img src={avatarURL} />
             </div>
-            <hr class="divider" />
+            <hr className="divider" />
             <div className="user-stats">
                 <div className='user-name'>{name}</div>
                 <div>Answered {numberOfAnswers}</div>
-                <hr class="divider" />
+                <hr className="divider" />
                 <div>Created {numberOfQuestions}</div>
             </div>
-            <hr class="divider" />
+            <hr className="divider" />
             <div className="score-card">
                 <div className="score-title">Score</div>
                 <div className="score-number circle-base">10</div>

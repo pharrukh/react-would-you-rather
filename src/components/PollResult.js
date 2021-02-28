@@ -6,17 +6,17 @@ function PollResult({ question, author, authedUser }) {
     const { optionOne, optionTwo } = question
     const pollSize = optionOne.votes.length + optionTwo.votes.length
 
-    return (<card className="poll-result card">
+    return (<div className="poll-result card">
         <div className="title">Asked by {name}:</div>
         <div className="content">
             <div className="avatar"><img src={avatarURL} /></div>
-            <hr class="divider" />
+            <hr className="divider" />
             <div>
                 <Stats optionText={optionOne.text} numberOfVotes={optionOne.votes.length} pollSize={pollSize} isYourVote={optionOne.votes.includes(authedUser)} />
                 <Stats optionText={optionTwo.text} numberOfVotes={optionTwo.votes.length} pollSize={pollSize} isYourVote={optionTwo.votes.includes(authedUser)} />
             </div>
         </div>
-    </card>)
+    </div>)
 }
 
 export default PollResult

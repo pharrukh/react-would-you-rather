@@ -7,7 +7,7 @@ class Question extends Component {
         const { optionOne, optionTwo } = question
 
         return (
-            <card className="question">
+            <card className="question card">
                 <div className="title">{name} asks:</div>
                 <div className="content">
                     <div className="avatar"><img src={avatarURL} /></div>

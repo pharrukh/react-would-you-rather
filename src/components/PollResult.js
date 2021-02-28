@@ -6,7 +6,7 @@ function PollResult({ question, author, authedUser }) {
     const { optionOne, optionTwo } = question
     const pollSize = optionOne.votes.length + optionTwo.votes.length
 
-    return (<card className="poll-result">
+    return (<card className="poll-result card">
         <div className="title">Asked by {name}:</div>
         <div className="content">
             <div className="avatar"><img src={avatarURL} /></div>

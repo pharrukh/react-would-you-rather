@@ -2,6 +2,7 @@ import './App.css';
 import PollResult from './PollResult'
 import Question from './Question'
 import CreateQuestion from './CreateQuestion'
+import LeaderCard from './LeaderCard'
 
 let users = {
   timurshukhratov: {
@@ -19,7 +20,7 @@ let users = {
   malikatimurova: {
     id: 'malikatimurova',
     name: 'Malika Timurova',
-    avatarURL: 'https://www.normuradov.com/assets/malika_timurova.jpg',
+    avatarURL: 'https://www.normuradov.com/assets/malika_timurova.jpeg',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -29,7 +30,7 @@ let users = {
   khasanmukhamedov: {
     id: 'khasanmukhamedov',
     name: 'Khasan Mukhamedov',
-    avatarURL: 'https://www.normuradov.com/assets/khasan_mukhamedov.jpg',
+    avatarURL: 'https://www.normuradov.com/assets/khasan_mukhamedov.jpeg',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -121,8 +122,10 @@ let questions = {
 }
 
 function App() {
+
   return (
     <div className="App">
+      <LeaderCard author={users['khasanmukhamedov']} place={1} />
       <CreateQuestion />
       <Question question={questions['8xf0y6ziyjabvozdd253nd']} author={users['timurshukhratov']} />
       <PollResult question={questions['8xf0y6ziyjabvozdd253nd']} author={users['timurshukhratov']} authedUser={'timurshukhratov'} />

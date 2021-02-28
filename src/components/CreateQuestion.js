@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class CreateQuestion extends Component {
     render() {
-        return (<div className='question'>
+        return (<div className='card question'>
             <div className='title'>Create Question</div>
             <div className="hint">
                 <div>Complete the question:</div>

@@ -66,14 +66,19 @@ input[type="radio"]:checked:after {
   border: 2px solid black;
 }
 
-.question,
-.poll-result {
+/* TODO: merge this with something */
+.card {
   display: flex;
-  flex-direction: column;
   border: grey 1px solid;
   margin: 1em;
   max-width: 30em;
   border-radius: 2em;
+}
+
+.question,
+.poll-result {
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
@@ -119,13 +124,13 @@ input[type="submit"]:hover {
   background-color: #fee715ff;
 }
 
-.content .avatar {
+.avatar {
   display: flex;
   justify-content: center;
   align-self: center;
 }
 
-.content img {
+.avatar img {
   border-radius: 1em;
   margin: 1em;
   max-width: 5em;
@@ -212,4 +217,93 @@ input[type="text"] {
   margin-top: 0.5em;
   font-size: 1.3em;
   width: 90%;
+}
+
+.score-card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 1em;
+  width: 20%;
+  border: 1px solid #d1d3d1;
+  border-radius: 1em;
+}
+
+.score-card > .score-title {
+  font-family: "Alegreya", serif;
+  font-size: 1.3em;
+  background-color: #fee715ff;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+.circle-base {
+  color: white;
+  margin: 0.3em;
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+  background: #d1d3d1;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.user-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+.user-name {
+  font-family: "Alegreya", serif;
+  font-size: 1.4em;
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+}
+
+.leader-badge {
+  position: relative;
+  right: -1em;
+  top: -1em;
+  background: #fee715ff;
+  border-radius: 3em;
+  color: black;
+  border: solid 1px gray;
+  width: fit-content;
+  /* align-self: flex-end; */
+  padding: 0.3em;
+  /* margin-bottom: -1em; */
+}
+
+.note {
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.note:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-right: 3em solid transparent;
+  border-bottom: 3em solid transparent;
+  border-top: 3em solid #fee715ff;
+  z-index: 0;
+}
+
+.note p {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  color: white;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
 }

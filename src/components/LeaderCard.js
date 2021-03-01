@@ -36,7 +36,7 @@ function getColorFrom(place) {
         case 2:
             return 'silver'
         case 3:
-            return 'copper'
+            return '#b87333'
     }
 }
 

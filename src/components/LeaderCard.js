@@ -5,7 +5,8 @@ function LeaderCard({ author, place }) {
     const { name, avatarURL } = author
     const numberOfAnswers = Object.keys(author.answers).length
     const numberOfQuestions = author.questions.length
-
+    const score = numberOfAnswers + numberOfQuestions
+    
     return (
         <div className='card note'>
             <p><AiFillTrophy color={getColorFrom(place)} /></p>
@@ -22,7 +23,7 @@ function LeaderCard({ author, place }) {
             <hr className="divider" />
             <div className="score-card">
                 <div className="score-title">Score</div>
-                <div className="score-number circle-base">10</div>
+                <div className="score-number circle-base">{score}</div>
             </div>
         </div>
     )

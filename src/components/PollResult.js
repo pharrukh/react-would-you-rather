@@ -1,8 +1,12 @@
 import React from 'react'
+import { useParams } from 'react-router'
 import Stats from './Stats'
 
-function PollResult({ question, author, authedUser }) {
+function PollResult({ questions, author, authedUser }) {
+    const { id } = useParams()
+
     const { name, avatarURL } = author
+    const question = questions[id]
     const { optionOne, optionTwo } = question
     const pollSize = optionOne.votes.length + optionTwo.votes.length
 

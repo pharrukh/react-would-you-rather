@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-
+import { Link } from 'react-router-dom'
 class Question extends Component {
     render() {
         const { author, question, mode } = this.props
         const { name, avatarURL } = author
-        const { optionOne, optionTwo } = question
+        const { id, optionOne, optionTwo } = question
 
         const questionSection = <form>
             <input type="radio" id="optionOne" name='question' value={optionOne.text} />
@@ -18,7 +18,7 @@ class Question extends Component {
 
         const previewSection = <div className="preview-section">
             <div>...{optionOne.text}</div>
-            <button className="view-poll-button">view poll</button>
+            <button className="view-poll-button"><Link to={`/question/${id}`}>view poll</Link></button>
         </div>
 
         const mainSection = mode === 'preview' ? previewSection : questionSection

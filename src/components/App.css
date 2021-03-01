@@ -1,6 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Alegreya&family=Roboto&display=swap");
 
 .App {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  /* width: 100%; */
 }
 
 .App-logo {
@@ -122,6 +131,7 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background-color: #fee715ff;
+  cursor: pointer;
 }
 
 .avatar {
@@ -336,7 +346,7 @@ select[name="users"] {
 }
 
 .login-panel {
-  width: 30%;
+  width: 80%;
   border: solid 1px gray;
   margin: 1em;
   border-radius: 1em;
@@ -363,6 +373,7 @@ h4 {
 
 .view-poll-button:hover {
   background-color: gray;
+  cursor: pointer;
 }
 
 .preview-section {
@@ -377,7 +388,7 @@ h4 {
   border: solid 0.5px grey;
   margin: 1em;
   border-radius: 1em;
-  max-width: 50%;
+  max-width: 100%;
 }
 
 .section-title {
@@ -402,8 +413,10 @@ h4 {
   background-color: #d1d3d1;
 }
 
-.left-title:hover {
+.left-title:hover,
+.right-title:hover {
   filter: brightness(80%);
+  cursor: pointer;
 }
 
 .right-title {
@@ -411,10 +424,67 @@ h4 {
   background-color: #d1d3d1;
 }
 
-.right-title:hover {
-  filter: brightness(80%);
-}
-
 .active {
   background-color: #fee715ff;
+}
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  font-family: "Alegreya", serif;
+  font-size: 1.5em;
+  margin: 0;
+  margin-bottom: 0;
+  border-bottom: solid 0.5px gray;
+}
+
+nav > ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  width: 100%;
+}
+
+nav > ul > li {
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  color: grey;
+}
+
+nav > ul > li:hover {
+  cursor: pointer;
+  background-color: #fee715ff;
+  border-radius: 1em;
+}
+
+nav > div {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+}
+
+/* TODO: this can be improved */
+nav > div > div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+nav button {
+  font-family: "Alegreya", serif;
+  font-size: 1em;
+  border-radius: 4em;
+  border: solid 0.5px #fee715ff;
+  margin: 0.4em;
+  background-color: #fee715ff;
+}
+
+nav button:hover {
+  filter: brightness(80%);
+  cursor: pointer;
+}
+
+nav .nav-active {
+  color: black;
 }

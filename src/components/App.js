@@ -4,6 +4,8 @@ import Question from './Question'
 import CreateQuestion from './CreateQuestion'
 import LeaderCard from './LeaderCard'
 import LoginPanel from './LoginPanel'
+import QuestionList from './QuestionList'
+import Navigation from './Navigation'
 
 let users = {
   timurshukhratov: {
@@ -122,39 +124,21 @@ let questions = {
   },
 }
 
-const mapToQuestion = (users, questions, id) => {
-  const question = questions[id]
-  const user = users[question.author]
-  return <Question key={id} question={question} author={user} mode="preview" />
-}
-
 function App() {
   const authedUser = 'timurshukhratov'
 
-  const mode = 'answered'
-  const answeredQuestions = Object.keys(users[authedUser].answers).map(id => mapToQuestion(users, questions, id))
-  const unansweredQuestions = Object.keys(questions)
-    .filter(id => !Object.keys(users[authedUser].answers).includes(id))
-    .map(id => mapToQuestion(users, questions, id))
-  const selectedQuestions = mode === 'answered' ? answeredQuestions : unansweredQuestions
-  const anweredTitleClasses = mode === 'answered' ? "right-title" : "right-title active"
-  const unanweredTitleClasses = mode === 'answered' ? "left-title active" : "left-title"
-
   return (
     <div className="App">
-      <div className="question-list">
-        <div className="section-title">
-          <div className={unanweredTitleClasses}>Unanswered</div>
-          <div className={anweredTitleClasses}>Answered</div>
-        </div>
-        {selectedQuestions}
-      </div>
-      <LoginPanel users={users} />
-      <LeaderCard author={users['khasanmukhamedov']} place={1} />
-      <CreateQuestion />
-      <Question question={questions['8xf0y6ziyjabvozdd253nd']} author={users['timurshukhratov']} />
-      <PollResult question={questions['8xf0y6ziyjabvozdd253nd']} author={users['timurshukhratov']} authedUser={'timurshukhratov'} />
-    </div >
+      <Navigation userName={users[authedUser].name} />
+      <div className="container">
+        <QuestionList users={users} questions={questions} authedUser={authedUser} />
+        <LoginPanel users={users} />
+        <LeaderCard author={users['khasanmukhamedov']} place={1} />
+        <CreateQuestion />
+        <Question question={questions['8xf0y6ziyjabvozdd253nd']} author={users[authedUser]} />
+        <PollResult question={questions['8xf0y6ziyjabvozdd253nd']} author={users[authedUser]} authedUser={authedUser} />
+      </div >
+    </div>
   );
 }
 

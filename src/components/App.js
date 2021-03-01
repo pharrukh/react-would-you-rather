@@ -6,6 +6,7 @@ import LeaderCard from './LeaderCard'
 import LoginPanel from './LoginPanel'
 import QuestionList from './QuestionList'
 import Navigation from './Navigation'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 let users = {
   timurshukhratov: {
@@ -129,15 +130,17 @@ function App() {
 
   return (
     <div className="App">
-      <Navigation userName={users[authedUser].name} />
-      <div className="container">
-        <QuestionList users={users} questions={questions} authedUser={authedUser} />
-        <LoginPanel users={users} />
-        <LeaderCard author={users['khasanmukhamedov']} place={1} />
-        <CreateQuestion />
-        <Question question={questions['8xf0y6ziyjabvozdd253nd']} author={users[authedUser]} />
-        <PollResult question={questions['8xf0y6ziyjabvozdd253nd']} author={users[authedUser]} authedUser={authedUser} />
-      </div >
+      <Router>
+        <Navigation userName={users[authedUser].name} />
+        <div className="container">
+          <Route path="/" exact > <QuestionList users={users} questions={questions} authedUser={authedUser} /></Route>
+          <Route path="/new" exact component={CreateQuestion} />
+          <Route path="/leaders" exact > <LeaderCard author={users['khasanmukhamedov']} place={1} /></Route>
+          {/* <LoginPanel users={users} />
+          <Question question={questions['8xf0y6ziyjabvozdd253nd']} author={users[authedUser]} />
+          <PollResult question={questions['8xf0y6ziyjabvozdd253nd']} author={users[authedUser]} authedUser={authedUser} /> */}
+        </div >
+      </Router>
     </div>
   );
 }

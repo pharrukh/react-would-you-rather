@@ -454,6 +454,7 @@ nav > ul > li {
 
 nav > ul > li:hover {
   cursor: pointer;
+
   background-color: #fee715ff;
   border-radius: 1em;
 }

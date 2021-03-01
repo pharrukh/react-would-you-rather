@@ -132,7 +132,7 @@ class App extends Component {
 
   isLoggedIn = () => this.state.authedUser !== null
   login = (userId) => { this.setState({ authedUser: userId }) }
-  logout = () => { console.log('test'); this.setState({ authedUser: null }) }
+  logout = () => { this.setState({ authedUser: null }) }
 
   render() {
     const homeSection = this.isLoggedIn() ? <QuestionList users={users} questions={questions} authedUser={this.state.authedUser} /> : <LoginPanel users={users} handleLogin={this.login} />

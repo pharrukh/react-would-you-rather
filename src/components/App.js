@@ -8,6 +8,7 @@ import QuestionList from './QuestionList'
 import Navigation from './Navigation'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Leaders from './Leaders'
+import { Component } from 'react';
 
 let users = {
   timurshukhratov: {
@@ -78,7 +79,7 @@ let questions = {
     timestamp: 1488579767190,
     optionOne: {
       votes: [],
-      text: '',
+      text: 'give free dinner',
     },
     optionTwo: {
       votes: ['timurshukhratov'],
@@ -126,25 +127,32 @@ let questions = {
   },
 }
 
-function App() {
-  const authedUser = 'timurshukhratov'
+class App extends Component {
+  state = { authedUser: null }
 
-  return (
-    <div className="App">
-      <Router>
-        <Navigation userName={users[authedUser].name} />
-        <div className="container">
-          <Route path="/" exact > <QuestionList users={users} questions={questions} authedUser={authedUser} /></Route>
-          <Route path="/new" exact component={CreateQuestion} />
-          <Route path="/leaders" exact > <Leaders users={users} /></Route>
-          <Route path="/question/:id" exact><PollResult questions={questions} author={users[authedUser]} authedUser={authedUser} /> </Route>
-          {/* <LoginPanel users={users} />
-          <Question question={questions['8xf0y6ziyjabvozdd253nd']} author={users[authedUser]} />
-          */}
-        </div >
-      </Router>
-    </div>
-  );
+  isLoggedIn = () => this.state.authedUser !== null
+  login = (userId) => { this.setState({ authedUser: userId }) }
+  logout = () => { console.log('test'); this.setState({ authedUser: null }) }
+
+  render() {
+    const homeSection = this.isLoggedIn() ? <QuestionList users={users} questions={questions} authedUser={this.state.authedUser} /> : <LoginPanel users={users} handleLogin={this.login} />
+    return (
+      <div className="App">
+        <Router>
+          <Navigation userName={this.isLoggedIn() ? users[this.state.authedUser].name : null} handleLogout={this.logout} />
+          <div className="container">
+            <Route path="/" exact > {homeSection}</Route>
+            <Route path="/new" exact component={CreateQuestion} />
+            <Route path="/leaders" exact > <Leaders users={users} /></Route>
+            <Route path="/question/:id" exact>
+              <PollResult questions={questions} author={users[this.state.authedUser]} authedUser={this.state.authedUser} />
+            </Route>
+          </div >
+        </Router>
+      </div>
+    );
+  }
 }
+
 
 export default App;

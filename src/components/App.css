@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Alegreya&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alegreya&family=Source+Sans+Pro:wght@400&display=swap");
 
 .App {
   display: flex;
@@ -107,7 +107,7 @@ input[type="radio"]:checked:after {
 .content {
   display: flex;
   flex-direction: row;
-  font-family: "Roboto", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 1.5em;
 }
 
@@ -162,7 +162,7 @@ input[type="submit"]:hover {
   border: solid black 1px;
   display: flex;
   flex-direction: column;
-  font-family: "Roboto", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 1em;
   max-width: 10em;
   border-radius: 1em;
@@ -216,7 +216,7 @@ input[type="submit"]:hover {
 /* TODO: this selector can be improved */
 .hint {
   margin-top: 0.4em;
-  font-family: "Roboto", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 1.5em;
   text-align: left;
   margin-left: 0.5em;
@@ -371,6 +371,7 @@ h4 {
 
 .view-poll-button {
   background-color: white;
+  font-family: 'Source Sans Pro', sans-serif;
   border: solid 0.5px gray;
   font-size: 1em;
   border-radius: 0.5em;
@@ -402,7 +403,7 @@ h4 {
   flex-direction: row;
   justify-content: space-around;
   align-items: stretch;
-  font-size: 1.5em;
+  font-size: 2em;
   border-top-right-radius: 0.5em;
   border-top-left-radius: 0.5em;
   border-bottom: solid 0.5px grey;
@@ -450,7 +451,7 @@ nav > ul {
   width: 100%;
 }
 
-nav > ul > li a{
+nav > ul > li a {
   text-align: center;
   width: 100%;
   display: inline-block;

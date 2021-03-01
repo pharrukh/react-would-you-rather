@@ -246,7 +246,7 @@ input[type="text"] {
 
 .note {
   position: relative;
-  border-radius: 5px;
+  border-radius: 1em;
   overflow: hidden;
 }
 
@@ -259,7 +259,7 @@ input[type="text"] {
   height: 0;
   border-right: 3em solid transparent;
   border-bottom: 3em solid transparent;
-  border-top: 3em solid #d1d3d1;
+  border-top: 3em solid white;
   z-index: 0;
 }
 

@@ -200,3 +200,19 @@ export function _saveQuestionAnswer({ authedUser, qid, answer }) {
         }, 500)
     })
 }
+
+export function _signup(name, avatarURL) {
+    const username = name.replace(/ /g, '')
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            users[username] = {
+                id: username,
+                name,
+                avatarURL,
+                answers: {},
+                questions: []
+            }
+            res()
+        }, 1000)
+    })
+}

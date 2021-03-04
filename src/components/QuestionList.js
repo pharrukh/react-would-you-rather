@@ -15,6 +15,7 @@ class QuestionList extends Component {
             .map(id => questions[id])
             .sort((a, b) => b.timestamp - a.timestamp)
             .map(question => mapToQuestion(users, question, 'preview', onQuestionAnswered))
+
         const unansweredQuestions = Object.keys(questions)
             .filter(id => !Object.keys(users[authedUser].answers).includes(id))
             .map(id => questions[id])

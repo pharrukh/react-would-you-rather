@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 class LoginPanel extends Component {
     state = { selectValue: '-' }
@@ -22,8 +23,9 @@ class LoginPanel extends Component {
                     <option disabled defaultValue="-">-</option>
                     {usersOptions}
                 </select>
-                <input type="submit" value="submit" onClick={() => handleLogin(this.state.selectValue)} />
+                <input type="submit" value="submit" onClick={() => handleLogin(this.state.selectValue)} disabled={this.state.selectValue === '-'} />
             </form>
+            <button className='sign-up-button'><Link to='/signup'>sign up</Link></button>
         </div>)
     }
 }

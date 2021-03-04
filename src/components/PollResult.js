@@ -5,12 +5,10 @@ import NotFound from './NotFound'
 
 function PollResult({ questions, author, authedUser }) {
     const { id } = useParams()
-    console.log('id, ', id)
     const { name, avatarURL } = author
     const question = questions[id]
 
     if (!question) {
-        console.log('test')
         return <NotFound />
     }
 

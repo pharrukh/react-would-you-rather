@@ -1,36 +1,34 @@
 import React, { Component } from 'react'
-import { useParams } from 'react-router'
 import Question from './Question'
 
 class QuestionList extends Component {
     state = {
-        mode: 'answered'
-    }
-
-    showAnswered = () => {
-        this.setState({ mode: 'answered' })
-    }
-
-    showUnanswered = () => {
-        this.setState({ mode: 'unanswered' })
+        mode: 'unanswered'
     }
 
     render() {
-        const { users, questions, authedUser } = this.props
+        const { users, questions, authedUser, onQuestionAnswered } = this.props
 
         const mode = this.state.mode
-        const answeredQuestions = Object.keys(users[authedUser].answers).map(id => mapToQuestion(users, questions, id, 'preview'))
+
+        const answeredQuestions = Object.keys(users[authedUser].answers)
+            .map(id => questions[id])
+            .sort((a, b) => b.timestamp - a.timestamp)
+            .map(question => mapToQuestion(users, question, 'preview', onQuestionAnswered))
         const unansweredQuestions = Object.keys(questions)
             .filter(id => !Object.keys(users[authedUser].answers).includes(id))
-            .map(id => mapToQuestion(users, questions, id, 'to-answer'))
+            .map(id => questions[id])
+            .sort((a, b) => b.timestamp - a.timestamp)
+            .map(question => mapToQuestion(users, question, 'to-answer', onQuestionAnswered))
+
         const selectedQuestions = mode === 'answered' ? answeredQuestions : unansweredQuestions
         const anweredTitleClasses = mode === 'answered' ? "right-title active" : "right-title"
         const unanweredTitleClasses = mode === 'answered' ? "left-title" : "left-title active"
 
         return (<div className="question-list">
             <div className="section-title">
-                <div className={unanweredTitleClasses} onClick={this.showUnanswered}>Unanswered</div>
-                <div className={anweredTitleClasses} onClick={this.showAnswered}>Answered</div>
+                <div className={unanweredTitleClasses} onClick={() => this.setState({ mode: 'unanswered' })}>Unanswered</div>
+                <div className={anweredTitleClasses} onClick={() => this.setState({ mode: 'answered' })}>Answered</div>
             </div>
             {selectedQuestions}
         </div>)
@@ -38,10 +36,9 @@ class QuestionList extends Component {
 }
 
 
-const mapToQuestion = (users, questions, id, mode) => {
-    const question = questions[id]
+const mapToQuestion = (users, question, mode, onQuestionAnswered) => {
     const user = users[question.author]
-    return <Question key={id} question={question} author={user} mode={mode} />
+    return <Question key={question.id} question={question} author={user} mode={mode} onQuestionAnswered={onQuestionAnswered} />
 }
 
 export default QuestionList

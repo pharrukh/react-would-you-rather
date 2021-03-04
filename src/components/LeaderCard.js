@@ -6,12 +6,12 @@ function LeaderCard({ author, place }) {
     const numberOfAnswers = Object.keys(author.answers).length
     const numberOfQuestions = author.questions.length
     const score = numberOfAnswers + numberOfQuestions
-    
+
     return (
         <div className='card note'>
             <p><AiFillTrophy color={getColorFrom(place)} /></p>
             <div className="avatar">
-                <img src={avatarURL} />
+                <img alt="avatar" src={avatarURL} />
             </div>
             <hr className="divider" />
             <div className="user-stats">
@@ -37,6 +37,8 @@ function getColorFrom(place) {
             return 'silver'
         case 3:
             return '#b87333'
+        default:
+            return 'white'
     }
 }
 

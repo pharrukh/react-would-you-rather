@@ -14,7 +14,7 @@ let users = {
     malikatimurova: {
         id: 'malikatimurova',
         name: 'Malika Timurova',
-        avatarURL: 'https://www.normuradov.com/assets/malika_timurova.jpg',
+        avatarURL: 'https://www.normuradov.com/assets/malika_timurova.jpeg',
         answers: {
             "vthrdm985a262al8qx3do": 'optionOne',
             "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -24,7 +24,7 @@ let users = {
     khasanmukhamedov: {
         id: 'khasanmukhamedov',
         name: 'Khasan Mukhamedov',
-        avatarURL: 'https://www.normuradov.com/assets/khasan_mukhamedov.jpg',
+        avatarURL: 'https://www.normuradov.com/assets/khasan_mukhamedov.jpeg',
         answers: {
             "xj352vofupe1dqz9emx13r": 'optionOne',
             "vthrdm985a262al8qx3do": 'optionTwo',

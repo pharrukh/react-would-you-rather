@@ -8,47 +8,49 @@ import { Route, Switch } from 'react-router-dom'
 import Leaders from './Leaders'
 import { Component } from 'react';
 import { _getQuestions, _getUsers, _saveQuestion, _saveQuestionAnswer, _signup } from '../_DATA'
-import ReactLoading from 'react-loading';
 import Signup from './Signup'
+import Loading from './Loading'
+import { connect } from 'react-redux'
+import { hideLoading, showLoading } from '../actions/loading';
 
 class App extends Component {
-  state = { authedUser: null, questions: [], users: [], isLoading: false }
+  state = { authedUser: null, questions: [], users: [] }
 
   isLoggedIn = () => this.state.authedUser !== null
   login = (userId) => { this.setState({ ...this.state, authedUser: userId }) }
   logout = () => { this.setState({ authedUser: null }) }
 
   syncData = async () => {
-    this.setState({ ...this.state, isLoading: true })
+    this.props.dispatch(showLoading());
     this.setState({
       ...this.state,
       users: await _getUsers(),
       questions: await _getQuestions()
     })
-    this.setState({ ...this.state, isLoading: false })
+    this.props.dispatch(hideLoading());
   }
 
   addQuestion = async (optionOneText, optionTwoText, authorId) => {
-    this.setState({ ...this.state, isLoading: true })
+    this.props.dispatch(showLoading());
     const question = { optionOneText, optionTwoText, author: authorId }
     await _saveQuestion(question)
     await this.syncData()
-    this.setState({ ...this.state, isLoading: false })
+    this.props.dispatch(hideLoading());
   }
 
   handleQuestionAnswered = async (questionId, optionType) => {
-    this.setState({ ...this.state, isLoading: true })
+    this.props.dispatch(showLoading());
     const updateCommand = { authedUser: this.state.authedUser, qid: questionId, answer: optionType }
     await _saveQuestionAnswer(updateCommand)
     await this.syncData()
-    this.setState({ ...this.state, isLoading: false })
+    this.props.dispatch(hideLoading());
   }
 
   addUser = async (name, avatarURL) => {
-    this.setState({ ...this.state, isLoading: true })
+    this.props.dispatch(showLoading());
     await _signup(name, avatarURL)
     await this.syncData()
-    this.setState({ ...this.state, isLoading: false })
+    this.props.dispatch(hideLoading());
   }
 
   async componentDidMount() {
@@ -58,12 +60,10 @@ class App extends Component {
   render() {
     if (!this.isLoggedIn()) {
 
-      if (this.state.isLoading) {
+      if (this.props.isLoading) {
         return (<div className="App">
           <div className="container">
-            <div className="loading-sign">
-              <ReactLoading type='bars' color='#fee715ff' height='3em' width='6em' />
-            </div>
+            <Loading />
           </div>
         </div>)
       }
@@ -87,10 +87,8 @@ class App extends Component {
       </div>
     )
 
-    if (this.state.isLoading) {
-      content = <div className="loading-sign">
-        <ReactLoading type='bars' color='#fee715ff' height='3em' width='6em' />
-      </div>
+    if (this.props.isLoading) {
+      content = <Loading />
     }
 
     return (
@@ -104,5 +102,8 @@ class App extends Component {
   }
 }
 
+function mapStateToProps({ loading }) {
+  return { isLoading: loading.isLoading }
+}
 
-export default App;
+export default connect(mapStateToProps)(App);

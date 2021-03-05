@@ -14,7 +14,6 @@ a {
   display: flex;
   flex-direction: column;
   align-self: center;
-  /* width: 100%; */
 }
 
 input[type="radio"]:after {
@@ -129,7 +128,7 @@ input[type="submit"]:disabled {
 }
 
 .stats {
-  border: solid black 1px;
+  border: solid #d1d3d1 1px;
   display: flex;
   flex-direction: column;
   font-family: "Source Sans Pro", sans-serif;
@@ -138,6 +137,7 @@ input[type="submit"]:disabled {
   border-radius: 1em;
   padding: 0.3em;
   margin: 1em;
+  text-align: center;
 }
 
 .stats > .details {
@@ -145,13 +145,14 @@ input[type="submit"]:disabled {
 }
 
 .stats-badge {
+  font-family: "Alegreya", serif;
+  font-size: 0.8em;
   position: relative;
   right: -1em;
   top: -1em;
   background: #fee715ff;
   border-radius: 3em;
   color: black;
-  border: solid 1px gray;
   width: fit-content;
   align-self: flex-end;
   padding: 0.3em;
@@ -161,15 +162,16 @@ input[type="submit"]:disabled {
 .progressbar {
   background-color: #d1d3d1;
   border-radius: 13px;
-  padding: 3px;
+  padding: 0.2em;
 }
 
 .progressbar > div {
   background-color: #fee715ff;
-  height: 20px;
+  height: 1em;
   border-radius: 10px;
   font-size: 0.8em;
   color: black;
+  padding-bottom: 0.1em;
 }
 
 .divider {

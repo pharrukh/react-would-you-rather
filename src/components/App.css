@@ -330,6 +330,14 @@ select[name="users"] {
   margin-right: 0.5em;
 }
 
+.login-panel select {
+  border: solid 1px #d1d3d1;
+  font-size: 1.2em;
+  border-radius: 0.5em;
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+}
+
 .view-poll-button {
   background-color: white;
   font-family: "Source Sans Pro", sans-serif;
@@ -474,9 +482,10 @@ nav .nav-active {
   border-radius: 0.8em;
   background-color: #d1d3d1;
   margin-bottom: 0.5em;
-  width: 90%;
   font-size: 1em;
   padding: 0.5em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 
 .sign-up-button:hover {

@@ -19,7 +19,6 @@ class App extends Component {
 
   isLoggedIn = () => this.props.authedUser
   login = (userId) => this.props.dispatch(loginUser(userId))
-  logout = () => this.props.dispatch(logoutUser())
 
   syncData = async () => {
     this.props.dispatch(showLoading());
@@ -94,7 +93,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Navigation userName={this.isLoggedIn() ? this.state.users[this.props.authedUser].name : null} handleLogout={this.logout} />
+        <Navigation userName={this.isLoggedIn() ? this.state.users[this.props.authedUser].name : null}/>
         <div className="container">
           {content}
         </div >

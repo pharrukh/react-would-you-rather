@@ -12,13 +12,14 @@ import Signup from './Signup'
 import Loading from './Loading'
 import { connect } from 'react-redux'
 import { hideLoading, showLoading } from '../actions/loading';
+import { loginUser, logoutUser } from '../actions/users';
 
 class App extends Component {
-  state = { authedUser: null, questions: [], users: [] }
+  state = { questions: [], users: [] }
 
-  isLoggedIn = () => this.state.authedUser !== null
-  login = (userId) => { this.setState({ ...this.state, authedUser: userId }) }
-  logout = () => { this.setState({ authedUser: null }) }
+  isLoggedIn = () => this.props.authedUser
+  login = (userId) => this.props.dispatch(loginUser(userId))
+  logout = () => this.props.dispatch(logoutUser())
 
   syncData = async () => {
     this.props.dispatch(showLoading());
@@ -40,7 +41,7 @@ class App extends Component {
 
   handleQuestionAnswered = async (questionId, optionType) => {
     this.props.dispatch(showLoading());
-    const updateCommand = { authedUser: this.state.authedUser, qid: questionId, answer: optionType }
+    const updateCommand = { authedUser: this.props.authedUser, qid: questionId, answer: optionType }
     await _saveQuestionAnswer(updateCommand)
     await this.syncData()
     this.props.dispatch(hideLoading());
@@ -80,10 +81,10 @@ class App extends Component {
 
     let content = (
       <div>
-        <Route path="/" exact render={() => <QuestionList users={this.state.users} questions={this.state.questions} authedUser={this.state.authedUser} onQuestionAnswered={this.handleQuestionAnswered} />} />
-        <Route path="/new" exact render={() => <CreateQuestion handleAddQuestion={this.addQuestion} userId={this.state.authedUser} />} />
+        <Route path="/" exact render={() => <QuestionList users={this.state.users} questions={this.state.questions} authedUser={this.props.authedUser} onQuestionAnswered={this.handleQuestionAnswered} />} />
+        <Route path="/new" exact render={() => <CreateQuestion handleAddQuestion={this.addQuestion} userId={this.props.authedUser} />} />
         <Route path="/leaders" exact render={() => <Leaders users={this.state.users} />} />
-        <Route path="/question/:id" exact render={() => <PollResult questions={this.state.questions} author={this.state.users[this.state.authedUser]} authedUser={this.state.authedUser} />} />
+        <Route path="/question/:id" exact render={() => <PollResult questions={this.state.questions} author={this.state.users[this.props.authedUser]} authedUser={this.props.authedUser} />} />
       </div>
     )
 
@@ -93,7 +94,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Navigation userName={this.isLoggedIn() ? this.state.users[this.state.authedUser].name : null} handleLogout={this.logout} />
+        <Navigation userName={this.isLoggedIn() ? this.state.users[this.props.authedUser].name : null} handleLogout={this.logout} />
         <div className="container">
           {content}
         </div >
@@ -102,8 +103,8 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ loading }) {
-  return { isLoading: loading.isLoading }
+function mapStateToProps({ loading, users }) {
+  return { isLoading: loading.isLoading, authedUser: users.authedUser }
 }
 
 export default connect(mapStateToProps)(App);

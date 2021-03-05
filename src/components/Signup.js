@@ -19,7 +19,9 @@ class Signup extends Component {
                 <div className='title'>create a new user</div>
                 <input type='text' name="username" value={this.state.name} onChange={e => { e.preventDefault(); this.setState({ ...this.setState, name: e.target.value }) }} placeholder='name' />
                 <input type='text' name="avatar-url" value={this.state.avatarURL} onChange={e => { e.preventDefault(); this.setState({ ...this.setState, avatarURL: e.target.value }) }} placeholder='avatar url' />
-                <input type='submit' name='submit' value="sign up" onClick={this.handleAddUser} />
+                <div className="submit-section">
+                    <input type='submit' name='submit' value="sign up" onClick={this.handleAddUser} disabled={!this.state.name || !this.state.avatarURL}/>
+                </div>
             </form>
         )
     }

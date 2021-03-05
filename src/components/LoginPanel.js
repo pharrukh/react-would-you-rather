@@ -14,10 +14,9 @@ class LoginPanel extends Component {
         const usersOptions = Object.keys(users).map(id => (<option key={id} value={id}>{users[id].name}</option>))
 
         return (<div className="login-panel">
-            <h3>Welcome to the Would You Rather app</h3>
-            <hr className="divider" />
+            <div className="title">Welcome to the Would You Rather app</div>
             <img className="logo" alt="logo" src="https://www.normuradov.com/assets/muslim_star.png" />
-            <h4>Please sign in to continue</h4>
+            <p>Please sign in to continue</p>
             <form onSubmit={e => e.preventDefault()}>
                 <select id="users" name="users" defaultValue={this.state.selectValue} onChange={this.handleChange} >
                     <option disabled defaultValue="-">-</option>
@@ -25,7 +24,7 @@ class LoginPanel extends Component {
                 </select>
                 <input type="submit" value="submit" onClick={() => handleLogin(this.state.selectValue)} disabled={this.state.selectValue === '-'} />
             </form>
-            <button className='sign-up-button'><Link to='/signup'>sign up</Link></button>
+            <Link to='/signup'><button className='sign-up-button'>sign up</button></Link>
         </div>)
     }
 }

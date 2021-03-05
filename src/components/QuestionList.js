@@ -11,16 +11,8 @@ class QuestionList extends Component {
 
         const mode = this.state.mode
 
-        const answeredQuestions = Object.keys(users[authedUser].answers)
-            .map(id => questions[id])
-            .sort((a, b) => b.timestamp - a.timestamp)
-            .map(question => mapToQuestion(users, question, 'preview', onQuestionAnswered))
-
-        const unansweredQuestions = Object.keys(questions)
-            .filter(id => !Object.keys(users[authedUser].answers).includes(id))
-            .map(id => questions[id])
-            .sort((a, b) => b.timestamp - a.timestamp)
-            .map(question => mapToQuestion(users, question, 'to-answer', onQuestionAnswered))
+        const answeredQuestions = getAnsweredQuestionsSection(users, questions, authedUser, onQuestionAnswered)
+        const unansweredQuestions = getUnansweredQuestionsSection(users, questions, authedUser, onQuestionAnswered)
 
         const selectedQuestions = mode === 'answered' ? answeredQuestions : unansweredQuestions
         const anweredTitleClasses = mode === 'answered' ? "right-title active" : "right-title"
@@ -36,6 +28,34 @@ class QuestionList extends Component {
     }
 }
 
+const getUnansweredQuestionsSection = (users, questions, authedUser, onQuestionAnswered) => {
+
+    const unansweredQuestions = Object.keys(questions)
+        .filter(id => !Object.keys(users[authedUser].answers).includes(id))
+
+    if (unansweredQuestions.length === 0) {
+        return <div className="empty-section">you answered all 👍</div>
+    }
+
+    return unansweredQuestions
+        .map(id => questions[id])
+        .sort((a, b) => b.timestamp - a.timestamp)
+        .map(question => mapToQuestion(users, question, 'to-answer', onQuestionAnswered))
+
+}
+
+const getAnsweredQuestionsSection = (users, questions, authedUser, onQuestionAnswered) => {
+
+    if (Object.keys(users[authedUser].answers).length === 0) {
+        return <div className="empty-section">nothing answered yet 🤷‍♂️</div>
+    }
+
+    return Object.keys(users[authedUser].answers)
+        .map(id => questions[id])
+        .sort((a, b) => b.timestamp - a.timestamp)
+        .map(question => mapToQuestion(users, question, 'preview', onQuestionAnswered))
+
+}
 
 const mapToQuestion = (users, question, mode, onQuestionAnswered) => {
     const user = users[question.author]

@@ -505,3 +505,9 @@ nav .nav-active {
   position: absolute;
   top: 50%;
 }
+
+.empty-section {
+  margin: 1em;
+  text-align: center;
+  font-size: 2.5em;
+}

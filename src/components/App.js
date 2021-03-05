@@ -4,12 +4,13 @@ import CreateQuestion from './CreateQuestion'
 import LoginPanel from './LoginPanel'
 import QuestionList from './QuestionList'
 import Navigation from './Navigation'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Leaders from './Leaders'
 import { Component } from 'react';
 import { _getQuestions, _getUsers, _saveQuestion, _saveQuestionAnswer, _signup } from '../_DATA'
 import ReactLoading from 'react-loading';
 import Signup from './Signup'
+
 class App extends Component {
   state = { authedUser: null, questions: [], users: [], isLoading: false }
 
@@ -55,7 +56,6 @@ class App extends Component {
   }
 
   render() {
-
     if (!this.isLoggedIn()) {
 
       if (this.state.isLoading) {
@@ -70,35 +70,35 @@ class App extends Component {
 
       return (<div className="App">
         <div className="container">
-          <Router>
-            <Route path="/" exact><LoginPanel users={this.state.users} handleLogin={this.login} /></Route>
-            <Route path="/signup" exact render={props => <Signup handleAddUser={this.addUser} history={props.history} />}></Route>
-          </Router>
+          <Switch>
+            <Route path="/signup" render={props => <Signup handleAddUser={this.addUser} history={props.history} />} />
+            <Route path="/*" exact render={() => <LoginPanel users={this.state.users} handleLogin={this.login} />} />
+          </Switch>
         </div>
       </div>)
     }
 
-    let content = (<div><Route path="/" exact >
-      <QuestionList users={this.state.users} questions={this.state.questions} authedUser={this.state.authedUser} onQuestionAnswered={this.handleQuestionAnswered} />
-    </Route>
-      <Route path="/new" exact  ><CreateQuestion handleAddQuestion={this.addQuestion} userId={this.state.authedUser} /></Route>
-      <Route path="/leaders" exact > <Leaders users={this.state.users} /></Route>
-      <Route path="/question/:id" exact>
-        <PollResult questions={this.state.questions} author={this.state.users[this.state.authedUser]} authedUser={this.state.authedUser} />
-      </Route></div>)
+    let content = (
+      <div>
+        <Route path="/" exact render={() => <QuestionList users={this.state.users} questions={this.state.questions} authedUser={this.state.authedUser} onQuestionAnswered={this.handleQuestionAnswered} />} />
+        <Route path="/new" exact render={() => <CreateQuestion handleAddQuestion={this.addQuestion} userId={this.state.authedUser} />} />
+        <Route path="/leaders" exact render={() => <Leaders users={this.state.users} />} />
+        <Route path="/question/:id" exact render={() => <PollResult questions={this.state.questions} author={this.state.users[this.state.authedUser]} authedUser={this.state.authedUser} />} />
+      </div>
+    )
 
     if (this.state.isLoading) {
-      content = <ReactLoading type='bars' color='#fee715ff' height='2em' width='2em' />
+      content = <div className="loading-sign">
+        <ReactLoading type='bars' color='#fee715ff' height='3em' width='6em' />
+      </div>
     }
 
     return (
       <div className="App">
-        <Router>
-          <Navigation userName={this.isLoggedIn() ? this.state.users[this.state.authedUser].name : null} handleLogout={this.logout} />
-          <div className="container">
-            {content}
-          </div >
-        </Router>
+        <Navigation userName={this.isLoggedIn() ? this.state.users[this.state.authedUser].name : null} handleLogout={this.logout} />
+        <div className="container">
+          {content}
+        </div >
       </div>
     );
   }

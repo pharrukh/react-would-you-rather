@@ -43,7 +43,7 @@ class App extends Component {
     let content = (
       <div>
         <Route path="/" exact render={() => <QuestionList users={this.props.users} questions={this.props.questions} authedUser={this.props.authedUser} />} />
-        <Route path="/new" exact render={() => <CreateQuestion userId={this.props.authedUser} />} />
+        <Route path="/new" exact component={CreateQuestion} />
         <Route path="/leaders" exact render={() => <Leaders users={this.props.users} />} />
         <Route path="/question/:id" exact render={() => <PollResult questions={this.props.questions} author={this.props.users[this.props.authedUser]} authedUser={this.props.authedUser} />} />
       </div>

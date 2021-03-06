@@ -12,13 +12,11 @@ import Signup from './Signup'
 import Loading from './Loading'
 import { connect } from 'react-redux'
 import { hideLoading, showLoading } from '../actions/loading';
-import { loginUser, logoutUser } from '../actions/users';
 
 class App extends Component {
   state = { questions: [], users: [] }
 
   isLoggedIn = () => this.props.authedUser
-  login = (userId) => this.props.dispatch(loginUser(userId))
 
   syncData = async () => {
     this.props.dispatch(showLoading());
@@ -72,7 +70,7 @@ class App extends Component {
         <div className="container">
           <Switch>
             <Route path="/signup" render={props => <Signup handleAddUser={this.addUser} history={props.history} />} />
-            <Route path="/*" exact render={() => <LoginPanel users={this.state.users} handleLogin={this.login} />} />
+            <Route path="/*" exact render={() => <LoginPanel users={this.state.users} />} />
           </Switch>
         </div>
       </div>)

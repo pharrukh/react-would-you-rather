@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { loginUser } from '../actions/users';
+import { connect } from 'react-redux'
 
 class LoginPanel extends Component {
     state = { selectValue: 'please sign in to continue' }
@@ -10,7 +12,7 @@ class LoginPanel extends Component {
     }
 
     render() {
-        const { users, handleLogin } = this.props
+        const { users } = this.props
         const usersOptions = Object.keys(users).map(id => (<option key={id} value={id}>{users[id].name}</option>))
 
         return (<div className="login-panel">
@@ -21,10 +23,15 @@ class LoginPanel extends Component {
                     <option disabled defaultValue="please sign in to continue">please sign in to continue</option>
                     {usersOptions}
                 </select>
-                <input type="submit" value="submit" onClick={() => handleLogin(this.state.selectValue)} disabled={this.state.selectValue === 'please sign in to continue'} />
+                <input type="submit" value="submit" onClick={() => this.props.dispatch(loginUser(this.state.selectValue))} disabled={this.state.selectValue === 'please sign in to continue'} />
                 <Link to='/signup' className='sign-up-button'>sign up</Link>
             </form>
         </div>)
     }
 }
-export default LoginPanel
+
+function mapStateToProps({ users }) {
+    return { users }
+}
+
+export default connect()(LoginPanel)

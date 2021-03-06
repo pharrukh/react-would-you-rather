@@ -10,10 +10,16 @@ class Navigation extends Component {
             <div>Hello, {userName}</div>
             <button onClick={() => this.props.dispatch(logoutUser())}>Logout</button>
         </div>)
-        const navigationItems = userName === null ? (<ul><li><NavLink to='/' exact activeClassName="nav-active">Home</NavLink></li><li><NavLink to='/leaders' exact activeClassName="nav-active">Leader Board</NavLink></li></ul>) :
-            (<ul><li><NavLink to='/' exact activeClassName="nav-active">Home</NavLink></li>
+        const navigationItems = userName === null ?
+            (<ul>
+                <li><NavLink to='/' exact activeClassName="nav-active">Home</NavLink></li>
+                <li><NavLink to='/leaders' exact activeClassName="nav-active">Leader Board</NavLink></li>
+            </ul>) :
+            (<ul>
+                <li><NavLink to='/' exact activeClassName="nav-active">Home</NavLink></li>
                 <li> <NavLink to='/new' exact activeClassName="nav-active">New Question</NavLink></li>
-                <li><NavLink to='/leaders' exact activeClassName="nav-active">Leader Board</NavLink></li></ul>)
+                <li><NavLink to='/leaders' exact activeClassName="nav-active">Leader Board</NavLink></li>
+            </ul>)
         return (<nav>
             {navigationItems}
             {logoutSection}

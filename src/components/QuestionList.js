@@ -8,12 +8,12 @@ class QuestionList extends Component {
     }
 
     render() {
-        const { users, questions, authedUser, onQuestionAnswered } = this.props
+        const { users, questions, authedUser } = this.props
 
         const mode = this.state.mode
 
-        const answeredQuestions = getAnsweredQuestionsSection(users, questions, authedUser, onQuestionAnswered)
-        const unansweredQuestions = getUnansweredQuestionsSection(users, questions, authedUser, onQuestionAnswered)
+        const answeredQuestions = getAnsweredQuestionsSection(users, questions, authedUser)
+        const unansweredQuestions = getUnansweredQuestionsSection(users, questions, authedUser)
 
         const selectedQuestions = mode === 'answered' ? answeredQuestions : unansweredQuestions
         const anweredTitleClasses = mode === 'answered' ? "right-title active" : "right-title"
@@ -29,7 +29,7 @@ class QuestionList extends Component {
     }
 }
 
-const getUnansweredQuestionsSection = (users, questions, authedUser, onQuestionAnswered) => {
+const getUnansweredQuestionsSection = (users, questions, authedUser) => {
 
     const unansweredQuestions = Object.keys(questions)
         .filter(id => !Object.keys(users[authedUser].answers).includes(id))
@@ -41,11 +41,11 @@ const getUnansweredQuestionsSection = (users, questions, authedUser, onQuestionA
     return unansweredQuestions
         .map(id => questions[id])
         .sort((a, b) => b.timestamp - a.timestamp)
-        .map(question => mapToQuestion(users, question, 'to-answer', onQuestionAnswered))
+        .map(question => mapToQuestion(users, question, 'to-answer'))
 
 }
 
-const getAnsweredQuestionsSection = (users, questions, authedUser, onQuestionAnswered) => {
+const getAnsweredQuestionsSection = (users, questions, authedUser) => {
 
     if (Object.keys(users[authedUser].answers).length === 0) {
         return <div className="empty-section">nothing answered yet 🤷‍♂️</div>
@@ -54,13 +54,13 @@ const getAnsweredQuestionsSection = (users, questions, authedUser, onQuestionAns
     return Object.keys(users[authedUser].answers)
         .map(id => questions[id])
         .sort((a, b) => b.timestamp - a.timestamp)
-        .map(question => mapToQuestion(users, question, 'preview', onQuestionAnswered))
+        .map(question => mapToQuestion(users, question, 'preview'))
 
 }
 
-const mapToQuestion = (users, question, mode, onQuestionAnswered) => {
+const mapToQuestion = (users, question, mode) => {
     const user = users[question.author]
-    return <Question key={question.id} question={question} author={user} mode={mode} onQuestionAnswered={onQuestionAnswered} />
+    return <Question key={question.id} question={question} author={user} mode={mode} />
 }
 
 export default connect()(QuestionList)

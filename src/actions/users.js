@@ -26,6 +26,14 @@ export function addUser(user) {
     }
 }
 
+
+export function receiveUsers(users) {
+    return {
+        type: RECEIVE_USERS,
+        users
+    }
+}
+
 export function handleAddUser(name, avatarURL) {
     return (dispatch) => {
         dispatch(showLoading())
@@ -34,12 +42,5 @@ export function handleAddUser(name, avatarURL) {
                 dispatch(addUser(user))
                 dispatch(hideLoading())
             })
-    }
-}
-
-export function receiveUsers(users) {
-    return {
-        type: RECEIVE_USERS,
-        users
     }
 }

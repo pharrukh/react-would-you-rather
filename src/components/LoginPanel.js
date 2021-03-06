@@ -30,8 +30,4 @@ class LoginPanel extends Component {
     }
 }
 
-function mapStateToProps({ users }) {
-    return { users: users.users }
-}
-
 export default connect()(LoginPanel)

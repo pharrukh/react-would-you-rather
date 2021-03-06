@@ -1,6 +1,5 @@
 import { _saveQuestion, _saveQuestionAnswer } from '../_DATA'
 import { hideLoading, showLoading } from '../actions/loading'
-import { handleLoadData } from './shared'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'

@@ -8,7 +8,7 @@ class Question extends Component {
     state = { asnwer: null }
 
     render() {
-        const { author, question, mode, onQuestionAnswered } = this.props
+        const { author, question, mode } = this.props
         const { name, avatarURL } = author
         const { id, optionOne, optionTwo } = question
 

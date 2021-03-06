@@ -24,7 +24,7 @@ class Question extends Component {
 
         const previewSection = <div className="preview-section">
             <div>...{optionOne.text}</div>
-            <button className="view-poll-button"><Link to={`/question/${id}`}>view poll</Link></button>
+            <button className="view-poll-button"><Link to={`/questions/${id}`}>view poll</Link></button>
         </div>
 
         const mainSection = mode === 'preview' ? previewSection : questionSection

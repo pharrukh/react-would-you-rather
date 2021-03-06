@@ -11,6 +11,7 @@ import Signup from './Signup'
 import Loading from './Loading'
 import { connect } from 'react-redux'
 import { handleLoadData } from '../actions/shared'
+import NotFound from './NotFound'
 
 class App extends Component {
   componentDidMount() {
@@ -42,10 +43,13 @@ class App extends Component {
 
     let content = (
       <div>
-        <Route path="/" exact render={() => <QuestionList users={this.props.users} questions={this.props.questions} authedUser={this.props.authedUser} />} />
-        <Route path="/new" exact component={CreateQuestion} />
-        <Route path="/leaders" exact render={() => <Leaders users={this.props.users} />} />
-        <Route path="/question/:id" exact render={() => <PollResult questions={this.props.questions} author={this.props.users[this.props.authedUser]} authedUser={this.props.authedUser} />} />
+        <Switch>
+          <Route path="/" exact render={() => <QuestionList users={this.props.users} questions={this.props.questions} authedUser={this.props.authedUser} />} />
+          <Route path="/new" exact component={CreateQuestion} />
+          <Route path="/leaders" exact render={() => <Leaders users={this.props.users} />} />
+          <Route path="/questions/:id" exact render={() => <PollResult questions={this.props.questions} author={this.props.users[this.props.authedUser]} authedUser={this.props.authedUser} />} />
+          <Route path="/*" component={NotFound} />
+        </Switch>
       </div>
     )
 

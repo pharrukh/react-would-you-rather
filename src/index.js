@@ -6,8 +6,9 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducers from './reducers/index'
+import middleware from './middleware/index'
 
-const store = createStore(reducers)
+const store = createStore(reducers, middleware)
 
 ReactDOM.render(
   <Provider store={store}>

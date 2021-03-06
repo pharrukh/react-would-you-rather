@@ -4,6 +4,10 @@
 
 The project is deployed [here](https://www.normuradov.com/product/would-you-rather).
 
+## requirements
+
+Can be found [here]()
+
 ## technologies
 
 - react

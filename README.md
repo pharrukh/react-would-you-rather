@@ -6,7 +6,7 @@ The project is deployed [here](https://www.normuradov.com/product/would-you-rath
 
 ## requirements
 
-Can be found [here]()
+Can be found [here](https://github.com/pharrukh/react-would-you-rather/blob/master/requirements.png)
 
 ## technologies
 

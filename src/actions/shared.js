@@ -1,4 +1,4 @@
-import { hideLoading, showLoading } from '../actions/loading';
+import { hideLoading, showLoading } from '../actions/loading'
 import { _getQuestions, _getUsers, _saveQuestion, _saveQuestionAnswer, _signup } from '../_DATA'
 import { receiveUsers } from './users'
 import { receiveQuestions } from './questions'

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Question from './Question'
+import { connect } from 'react-redux'
 
 class QuestionList extends Component {
     state = {
@@ -62,4 +63,4 @@ const mapToQuestion = (users, question, mode, onQuestionAnswered) => {
     return <Question key={question.id} question={question} author={user} mode={mode} onQuestionAnswered={onQuestionAnswered} />
 }
 
-export default QuestionList
+export default connect()(QuestionList)

@@ -15,21 +15,11 @@ import { hideLoading, showLoading } from '../actions/loading';
 import { handleLoadData } from '../actions/shared'
 
 class App extends Component {
-  state = { questions: [] }
-
-
   componentDidMount() {
     this.props.dispatch(handleLoadData());
   }
 
   isLoggedIn = () => this.props.authedUser
-
-  addQuestion = async (optionOneText, optionTwoText, authorId) => {
-    this.props.dispatch(showLoading());
-    const question = { optionOneText, optionTwoText, author: authorId }
-    await _saveQuestion(question)
-    this.props.dispatch(hideLoading());
-  }
 
   handleQuestionAnswered = async (questionId, optionType) => {
     this.props.dispatch(showLoading());
@@ -62,7 +52,7 @@ class App extends Component {
     let content = (
       <div>
         <Route path="/" exact render={() => <QuestionList users={this.props.users} questions={this.props.questions} authedUser={this.props.authedUser} onQuestionAnswered={this.handleQuestionAnswered} />} />
-        <Route path="/new" exact render={() => <CreateQuestion handleAddQuestion={this.addQuestion} userId={this.props.authedUser} />} />
+        <Route path="/new" exact render={() => <CreateQuestion userId={this.props.authedUser} />} />
         <Route path="/leaders" exact render={() => <Leaders users={this.props.users} />} />
         <Route path="/question/:id" exact render={() => <PollResult questions={this.props.questions} author={this.props.users[this.props.authedUser]} authedUser={this.props.authedUser} />} />
       </div>

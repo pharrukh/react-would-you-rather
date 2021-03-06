@@ -1,6 +1,6 @@
 import { SHOW_LOADING, HIDE_LOADING } from '../actions/loading'
 
-export default function loading(state = [], action) {
+export default function loading(state = {}, action) {
     switch (action.type) {
         case SHOW_LOADING:
             return {

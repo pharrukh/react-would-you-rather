@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { handleAnswerQuestion } from '../actions/questions'
+import { connect } from 'react-redux'
+
 class Question extends Component {
 
     state = { asnwer: null }
@@ -15,7 +18,7 @@ class Question extends Component {
             <input type="radio" id="OptionTwo" name='question' value={optionTwo.text} onChange={() => this.setState({ answer: 'optionTwo' })} />
             <label htmlFor="OptionTwo">{optionTwo.text}</label><br />
             <div>
-                <input type="submit" value="submit" onClick={() => { onQuestionAnswered(id, this.state.answer) }} />
+                <input type="submit" value="submit" onClick={() => this.props.dispatch(handleAnswerQuestion({ authedUser: this.props.authedUser, qid: id, answer: this.state.answer }))} />
             </div>
         </form>
 
@@ -42,4 +45,10 @@ class Question extends Component {
     }
 }
 
-export default Question
+
+function mapStateToProps({ users }) {
+    return { authedUser: users.authedUser }
+}
+
+
+export default connect(mapStateToProps)(Question)

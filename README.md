@@ -11,7 +11,7 @@ The project is deployed [here](https://www.normuradov.com/product/would-you-rath
 
 ## value
 
-Learn basic react and pass project in Udacity React Nanodegree.
+Learn redux in react and pass project in Udacity React Nanodegree.
 
 ## how to run
 

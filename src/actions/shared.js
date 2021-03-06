@@ -9,7 +9,11 @@ export function handleLoadData() {
         return _getUsers()
             .then((users) => {
                 dispatch(receiveUsers(users))
+            })
+            .then(_ => _getQuestions())
+            .then(questions => {
+                dispatch(receiveQuestions(questions))
                 dispatch(hideLoading())
             })
-    };
+    }
 }

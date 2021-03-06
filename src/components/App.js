@@ -15,24 +15,19 @@ import { hideLoading, showLoading } from '../actions/loading';
 import { handleLoadData } from '../actions/shared'
 
 class App extends Component {
-  state = { questions: [], users: [] }
+  state = { questions: [] }
+
+
+  componentDidMount() {
+    this.props.dispatch(handleLoadData());
+  }
 
   isLoggedIn = () => this.props.authedUser
-
-  syncData = async () => {
-    this.props.dispatch(showLoading());
-    this.setState({
-      ...this.state,
-      questions: await _getQuestions()
-    })
-    this.props.dispatch(hideLoading())
-  }
 
   addQuestion = async (optionOneText, optionTwoText, authorId) => {
     this.props.dispatch(showLoading());
     const question = { optionOneText, optionTwoText, author: authorId }
     await _saveQuestion(question)
-    await this.syncData()
     this.props.dispatch(hideLoading());
   }
 
@@ -40,26 +35,13 @@ class App extends Component {
     this.props.dispatch(showLoading());
     const updateCommand = { authedUser: this.props.authedUser, qid: questionId, answer: optionType }
     await _saveQuestionAnswer(updateCommand)
-    await this.syncData()
     this.props.dispatch(hideLoading());
-  }
-
-  addUser = async (name, avatarURL) => {
-    this.props.dispatch(showLoading());
-    await _signup(name, avatarURL)
-    await this.syncData()
-    this.props.dispatch(hideLoading());
-  }
-
-  async componentDidMount() {
-    this.props.dispatch(handleLoadData());
-    await this.syncData()
   }
 
   render() {
     if (!this.isLoggedIn()) {
 
-      if (this.props.isLoading) {
+      if (this.props.isLoading || this.props.isLoading === undefined) {
         return (<div className="App">
           <div className="container">
             <Loading />
@@ -70,7 +52,7 @@ class App extends Component {
       return (<div className="App">
         <div className="container">
           <Switch>
-            <Route path="/signup" render={props => <Signup handleAddUser={this.addUser} history={props.history} />} />
+            <Route path="/signup" render={props => <Signup history={props.history} />} />
             <Route path="/*" exact render={() => <LoginPanel users={this.props.users} />} />
           </Switch>
         </div>
@@ -79,10 +61,10 @@ class App extends Component {
 
     let content = (
       <div>
-        <Route path="/" exact render={() => <QuestionList users={this.props.users} questions={this.state.questions} authedUser={this.props.authedUser} onQuestionAnswered={this.handleQuestionAnswered} />} />
+        <Route path="/" exact render={() => <QuestionList users={this.props.users} questions={this.props.questions} authedUser={this.props.authedUser} onQuestionAnswered={this.handleQuestionAnswered} />} />
         <Route path="/new" exact render={() => <CreateQuestion handleAddQuestion={this.addQuestion} userId={this.props.authedUser} />} />
         <Route path="/leaders" exact render={() => <Leaders users={this.props.users} />} />
-        <Route path="/question/:id" exact render={() => <PollResult questions={this.state.questions} author={this.props.users[this.props.authedUser]} authedUser={this.props.authedUser} />} />
+        <Route path="/question/:id" exact render={() => <PollResult questions={this.props.questions} author={this.props.users[this.props.authedUser]} authedUser={this.props.authedUser} />} />
       </div>
     )
 
@@ -101,8 +83,8 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ loading, users }) {
-  return { isLoading: loading.isLoading, authedUser: users.authedUser, users: users.users }
+function mapStateToProps({ loading, users, questions }) {
+  return { isLoading: loading.isLoading, authedUser: users.authedUser, users: users.users, questions: questions.questions }
 }
 
 export default connect(mapStateToProps)(App);

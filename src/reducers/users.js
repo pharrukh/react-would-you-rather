@@ -1,4 +1,4 @@
-import { LOGIN_USER, LOGOUT_USER, RECEIVE_USERS } from '../actions/users'
+import { ADD_USER, LOGIN_USER, LOGOUT_USER, RECEIVE_USERS } from '../actions/users'
 
 export default function users(state = [], action) {
     switch (action.type) {
@@ -11,6 +11,13 @@ export default function users(state = [], action) {
             return {
                 ...state,
                 authedUser: null
+            }
+        case ADD_USER:
+            const users = state.users
+            users[action.user.id] = action.user
+            return {
+                ...state,
+                users
             }
         case RECEIVE_USERS:
             return {

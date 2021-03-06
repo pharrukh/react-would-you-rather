@@ -1,3 +1,6 @@
+import { hideLoading, showLoading } from '../actions/loading';
+import { _signup } from '../_DATA'
+
 export const LOGIN_USER = 'LOGIN_USER'
 export const LOGOUT_USER = 'LOGOUT_USER'
 export const ADD_USER = 'ADD_USER'
@@ -16,13 +19,21 @@ export function logoutUser() {
     }
 }
 
-export function addUser(name, avatarURL) {
+export function addUser(user) {
     return {
         type: ADD_USER,
-        user: {
-            name,
-            avatarURL
-        }
+        user
+    }
+}
+
+export function handleAddUser(name, avatarURL) {
+    return (dispatch) => {
+        dispatch(showLoading())
+        return _signup(name, avatarURL)
+            .then((user) => {
+                dispatch(addUser(user))
+                dispatch(hideLoading())
+            })
     }
 }
 

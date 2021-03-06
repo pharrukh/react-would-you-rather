@@ -205,14 +205,15 @@ export function _signup(name, avatarURL) {
     const username = name.replace(/ /g, '')
     return new Promise((res, rej) => {
         setTimeout(() => {
-            users[username] = {
+            const user = {
                 id: username,
                 name,
                 avatarURL,
                 answers: {},
                 questions: []
             }
-            res()
+            users[username] = user
+            res(user)
         }, 1000)
     })
 }
